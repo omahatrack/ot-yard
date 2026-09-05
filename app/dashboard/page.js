@@ -49,6 +49,8 @@ export default async function Dashboard(){
       const bv=b.status.remainingHours??b.status.remainingDays??Number.POSITIVE_INFINITY;
       return av-bv;
     });
+  const overdueService=neededService.filter(x=>x.status.key==='overdue').length;
+  const upcomingService=neededService.filter(x=>x.status.key==='due_soon').length;
 
   return <AppShell title="Dashboard Overview" active="Dashboard">
     <div className="grid4 dashboardMetrics">
@@ -69,11 +71,12 @@ export default async function Dashboard(){
         <div className="metricIcon metricIconEquipment" aria-hidden="true">▣</div>
       </div>
     </div>
+    <div className="serviceKpiRow"><a className="serviceKpi overdue" href="#needed-service"><span>Overdue Service</span><strong>{overdueService}</strong></a><a className="serviceKpi dueSoon" href="#needed-service"><span>Due Within 100 Hours / 30 Days</span><strong>{upcomingService}</strong></a></div>
     <div className="cols">
       <section className="card"><h2>Equipment</h2><div className="tablewrap"><table><thead><tr><th>Unit</th><th>Description</th><th>Hours</th></tr></thead><tbody>{equipment.map(e=><tr key={e.id}><td><a href={`/equipment/${e.id}`}><b>{e.code}</b></a></td><td>{e.displayName||'—'}</td><td>{e.currentHours}</td></tr>)}</tbody></table></div></section>
       <section className="card"><h2>Recent Inventory Activity</h2><div className="tablewrap"><table><tbody>{recent.map(t=><tr key={t.id}><td><b>{t.part.internalPartNumber}</b><div className="muted">{t.type} {t.qtyDelta>0?'+':''}{t.qtyDelta}{t.equipment?` • ${t.equipment.code}`:''}</div></td><td>{t.user?.name||'System'}</td></tr>)}</tbody></table></div></section>
     </div>
-    <section className="card dashboardServiceCard" style={{marginTop:18}}>
+    <section id="needed-service" className="card dashboardServiceCard" style={{marginTop:18}}>
       <div className="toolbar dashboardServiceHeader"><div><h2>Needed Service</h2><div className="muted">Overdue service and equipment within 100 hours (or 30 days) of its next configured service.</div></div><a className="textLink" href="/service">View Service</a></div>
       <div className="tablewrap"><table><thead><tr><th>Unit</th><th>Service</th><th>Current</th><th>Interval</th><th>Status</th><th>Due</th></tr></thead><tbody>
         {neededService.length?neededService.map(({interval,equipment,status})=><tr key={interval.id} className={`dashboardServiceRow ${status.key}`}>

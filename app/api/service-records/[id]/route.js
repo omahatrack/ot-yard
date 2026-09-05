@@ -3,6 +3,7 @@ import {prisma} from '../../../../lib/prisma';
 import {requireApiUser} from '../../../../lib/apiAuth';
 import {userCanAccessLocation} from '../../../../lib/session';
 import {redirectTo} from '../../../../lib/http';
+import {writeAudit} from '../../../../lib/audit';
 
 function parseServiceDate(raw){
   const value=String(raw||'').trim();
@@ -59,6 +60,7 @@ export async function POST(req,{params}){
         await tx.machineHoursLog.create({data:{equipmentId:existing.equipmentId,hours,userId:a.user.id}});
       }
     });
+    await writeAudit({userId:a.user.id,locationId:existing.equipment.locationId,entityType:'ServiceRecord',entityId:id,action:'UPDATE',summary:`Updated service record for ${existing.equipment.code}`});
     return redirectTo(`/equipment/${existing.equipmentId}`);
   }catch(err){
     return NextResponse.json({error:err.message||'Could not update service record.'},{status:400});

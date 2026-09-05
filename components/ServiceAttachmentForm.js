@@ -5,7 +5,7 @@ export default function ServiceAttachmentForm({serviceRecordId}){
     <form action={`/api/service-records/${serviceRecordId}/attachments`} method="post" encType="multipart/form-data" className="attachmentForm">
       <label>Document Name</label>
       <input name="displayName" placeholder="e.g. 500-Hour Service Invoice" required/>
-      <label>File</label>
+      <label>Document Type</label><select name="documentType" defaultValue="Other"><option>Invoice</option><option>Service Record</option><option>Inspection</option><option>Warranty</option><option>Manual</option><option>Photo</option><option>Other</option></select><label>File</label>
       <input name="attachment" type="file" accept="application/pdf,image/jpeg,image/png,image/webp" required/>
       <label>Document Notes <span className="muted">(optional)</span></label>
       <input name="attachmentNotes" placeholder="Invoice #, work order, vendor, etc."/>

@@ -7,7 +7,7 @@ export default async function AppShell({title,active,children}){
   if(!user) redirect('/');
   const role=user.role.name;
   const nav = role==='Admin'
-    ? [['Dashboard','/dashboard'],['Scan','/scan'],['Equipment','/equipment'],['Parts','/parts'],['Inventory','/inventory'],['Service','/service'],['Reports','/reports'],['Vendors','/vendors'],['General Ref','/general-ref'],['Users & Roles','/admin/users'],['Import Docs','/admin/import-documents']]
+    ? [['Dashboard','/dashboard'],['Scan','/scan'],['Equipment','/equipment'],['Parts','/parts'],['Inventory','/inventory'],['Service','/service'],['Reports','/reports'],['Vendors','/vendors'],['General Ref','/general-ref'],['Users & Roles','/admin/users'],['Audit Log','/admin/audit'],['System Status','/admin/system-status']]
     : role==='Mechanic'
       ? [['Dashboard','/dashboard'],['Scan','/scan'],['Equipment','/equipment'],['Service','/service']]
       : [['Dashboard','/dashboard'],['Scan','/scan'],['Parts','/parts'],['Inventory','/inventory']];

@@ -19,3 +19,7 @@ GoDaddy production startup fix.
 - Prevents authenticated App Router HTML/RSC responses from being cached across deployments.
 - Adds explicit no-store/no-cache headers and App Router Vary headers in middleware.
 - No database migration required.
+
+
+## v38
+Supabase Storage now uses `SUPABASE_SECRET_KEY` (`sb_secret_...`) for server-side access. Legacy `SUPABASE_SERVICE_ROLE_KEY` remains supported as a fallback. New secret keys are sent in the `apikey` header rather than as a Bearer JWT.
