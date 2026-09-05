@@ -1,13 +1,15 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '../../../../../lib/prisma';
-import { requireApiUser,userCanAccessLocation } from '../../../../../lib/session';
+import { requireApiUser } from '../../../../../lib/apiAuth';
+import { userCanAccessLocation } from '../../../../../lib/session';
 
 function redirectTo(path){ return new NextResponse(null,{status:303,headers:{Location:path}}); }
 
 export async function POST(req,{params}){
   const auth=await requireApiUser(['Admin','Mechanic']);
   if(auth.error)return NextResponse.json({error:auth.error},{status:auth.status});
-  const id=Number(params.id);
+  const resolvedParams=await params;
+  const id=Number(resolvedParams.id);
   if(!Number.isInteger(id))return NextResponse.json({error:'Invalid equipment ID.'},{status:400});
   const equipment=await prisma.equipment.findUnique({where:{id}});
   if(!equipment)return NextResponse.json({error:'Equipment not found.'},{status:404});
