@@ -13,3 +13,9 @@ GoDaddy production startup fix.
 - Hour updates create MachineHoursLog history entries.
 - Needed Service now treats equipment within 100 hours of its next hours-based service as Due Soon.
 - Calendar-based advance warning remains 30 days.
+
+
+## v35 deployment cache hardening
+- Prevents authenticated App Router HTML/RSC responses from being cached across deployments.
+- Adds explicit no-store/no-cache headers and App Router Vary headers in middleware.
+- No database migration required.
