@@ -74,7 +74,7 @@ export default async function Dashboard(){
       <section className="card"><h2>Recent Inventory Activity</h2><div className="tablewrap"><table><tbody>{recent.map(t=><tr key={t.id}><td><b>{t.part.internalPartNumber}</b><div className="muted">{t.type} {t.qtyDelta>0?'+':''}{t.qtyDelta}{t.equipment?` • ${t.equipment.code}`:''}</div></td><td>{t.user?.name||'System'}</td></tr>)}</tbody></table></div></section>
     </div>
     <section className="card dashboardServiceCard" style={{marginTop:18}}>
-      <div className="toolbar dashboardServiceHeader"><div><h2>Needed Service</h2><div className="muted">Service that is overdue or approaching its configured interval for this location.</div></div><a className="textLink" href="/service">View Service</a></div>
+      <div className="toolbar dashboardServiceHeader"><div><h2>Needed Service</h2><div className="muted">Overdue service and equipment within 100 hours (or 30 days) of its next configured service.</div></div><a className="textLink" href="/service">View Service</a></div>
       <div className="tablewrap"><table><thead><tr><th>Unit</th><th>Service</th><th>Current</th><th>Interval</th><th>Status</th><th>Due</th></tr></thead><tbody>
         {neededService.length?neededService.map(({interval,equipment,status})=><tr key={interval.id} className={`dashboardServiceRow ${status.key}`}>
           <td><a className="tableLink" href={`/equipment/${equipment.id}`}><b>{equipment.code}</b></a><div className="muted">{equipment.displayName||'Equipment'}</div></td>
@@ -83,7 +83,7 @@ export default async function Dashboard(){
           <td>{interval.hoursValue?`${interval.hoursValue.toLocaleString()} hrs`:''}{interval.hoursValue&&interval.daysValue?' • ':''}{interval.daysValue?`${interval.daysValue.toLocaleString()} days`:''}</td>
           <td><span className={`serviceDashboardBadge ${status.key}`}>{status.label}</span></td>
           <td>{serviceRemaining(status)}</td>
-        </tr>):<tr><td colSpan="6" className="emptyCell"><b>No service currently due.</b><div className="muted">Configured service intervals are on track.</div></td></tr>}
+        </tr>):<tr><td colSpan="6" className="emptyCell"><b>No service due within 100 hours.</b><div className="muted">Configured service intervals are currently outside the advance-warning window.</div></td></tr>}
       </tbody></table></div>
     </section>
   </AppShell>;

@@ -78,3 +78,14 @@
   .qrPanel .printLabel canvas{width:280px!important;height:280px!important}
   .qrPanel .printLabel{width:100%!important;max-width:none!important;gap:12px!important}
 }
+
+.hoursMeta{display:inline-flex!important;align-items:center;gap:7px;position:relative}
+.quickHours{display:inline-block;position:relative}
+.quickHours summary{cursor:pointer;color:var(--red);font-weight:800;font-size:12px;list-style:none;padding:2px 0}
+.quickHours summary::-webkit-details-marker{display:none}
+.quickHours[open] form{display:grid}
+.quickHours form{position:absolute;z-index:20;top:28px;left:50%;transform:translateX(-50%);width:255px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;box-shadow:0 12px 35px rgba(16,24,40,.18);gap:7px}
+.quickHours form label{font-size:12px;font-weight:800;color:var(--muted)}
+.quickHoursRow{display:grid;grid-template-columns:1fr auto;gap:7px;align-items:center}
+.quickHoursRow input{min-width:0;width:100%;padding:8px 9px;border:1px solid var(--line);border-radius:7px;font:inherit}
+.quickHoursRow .btn{padding:8px 11px}
