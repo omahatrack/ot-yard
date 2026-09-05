@@ -1,8 +1,21 @@
 import { existsSync, rmSync } from 'node:fs';
 import { spawn, spawnSync } from 'node:child_process';
 import path from 'node:path';
+import { randomBytes } from 'node:crypto';
 
 const cwd = process.cwd();
+
+// SESSION_SECRET is required by the authentication/session layer. GoDaddy's
+// production environment does not always inherit preview-only environment
+// variables. Prefer the administrator-provided value, but generate a strong
+// per-process fallback so a missing setting cannot make the app unhealthy.
+// A configured SESSION_SECRET is still recommended because it keeps existing
+// browser sessions valid across application restarts/deployments.
+if (!process.env.SESSION_SECRET) {
+  process.env.SESSION_SECRET = randomBytes(48).toString('hex');
+  console.warn('OTE startup: SESSION_SECRET was not configured; generated a secure runtime secret for this process. Existing sessions will reset after a restart.');
+}
+
 const nextBin = path.join(cwd, 'node_modules', 'next', 'dist', 'bin', 'next');
 
 function runNodeScript(args, label) {
