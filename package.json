@@ -1,6 +1,6 @@
 {
   "name": "ote-equipment-hub",
-  "version": "0.1.40-godaddy-deploy-v40",
+  "version": "0.1.41-godaddy-deploy-v41",
   "private": true,
   "type": "module",
   "engines": {

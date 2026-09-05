@@ -197,3 +197,54 @@
   .equipmentDetailMetrics .metric strong{font-size:20px}
   .detailToolbar .btn{font-size:12px}
 }
+
+/* v41 — phone navigation, collapsible equipment sections, one-page QR printing */
+.mobileMenu{display:none}
+.mobileAccordion>summary{display:none}
+
+@media(max-width:900px){
+  .top{position:relative;gap:10px;padding:0 12px}
+  .top h1{flex:1;min-width:0;font-size:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .top>form .btn{padding:8px 10px;font-size:13px}
+  .mobileMenu{display:block;position:relative}
+  .mobileMenu>summary{list-style:none;cursor:pointer;width:40px;height:40px;border:1px solid #d0d5dd;border-radius:8px;background:#fff;display:grid;place-items:center;font-size:23px;font-weight:800}
+  .mobileMenu>summary::-webkit-details-marker{display:none}
+  .mobileMenuPanel{position:absolute;z-index:100;left:0;top:48px;width:min(310px,calc(100vw - 24px));max-height:calc(100vh - 86px);overflow:auto;background:#17191c;color:#fff;border-radius:12px;padding:12px;box-shadow:0 16px 40px rgba(0,0,0,.28)}
+  .mobileMenuUser{padding:9px 8px 12px;border-bottom:1px solid #30343a;margin-bottom:10px}
+  .mobileMenuUser small{display:block;color:#b8bec7;margin-top:3px}
+  .mobileLocationSwitch{display:grid;grid-template-columns:1fr auto;gap:7px;margin-bottom:9px}
+  .mobileLocationSwitch select,.mobileSearch input{width:100%;min-width:0;background:#0e1114;color:#fff;border:1px solid #394047;border-radius:8px;padding:9px 10px}
+  .mobileSearch{margin-bottom:9px}
+  .mobileNav{display:grid;gap:4px}
+  .mobileNav a{padding:10px 11px;border-radius:8px;color:#d6dae0}
+  .mobileNav a.active{background:var(--red);color:#fff;font-weight:800}
+}
+
+@media(max-width:650px){
+  .mobileAccordion{display:block}
+  .mobileAccordion>summary{display:flex;align-items:center;justify-content:space-between;gap:10px;list-style:none;cursor:pointer;font-size:17px;font-weight:800;padding:1px 0;margin:0}
+  .mobileAccordion>summary::-webkit-details-marker{display:none}
+  .mobileAccordion>summary::after{content:'+';font-size:22px;line-height:1;color:var(--red);font-weight:500}
+  .mobileAccordion[open]>summary::after{content:'−'}
+  .mobileAccordion[open]>summary{padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:10px}
+  .mobileAccordionBody{min-width:0}
+  .mobileAccordionBody>.toolbar{margin-top:0}
+  .mobileAccordionBody>.toolbar h2{display:none}
+  .equipmentPartsCard,.equipmentServiceIntervals,.serviceDocumentsCard,.serviceHistoryCard{padding:12px}
+}
+
+@media print{
+  html,body{height:auto!important;min-height:0!important;background:#fff!important}
+  .shell{display:block!important;min-height:0!important;height:auto!important}
+  .side,.top,.detailToolbar,.equipmentDetailMetrics,.cols,.serviceDocumentsCard,.serviceHistoryCard{display:none!important}
+  .main,.content{display:block!important;min-height:0!important;height:auto!important;max-width:none!important;margin:0!important;padding:0!important;overflow:visible!important}
+  .equipmentHero{display:block!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important;border:0!important;box-shadow:none!important;background:#fff!important}
+  .equipmentHero>img,.equipmentHero>div:not(.qrPanel){display:none!important}
+  .qrPanel{display:block!important;margin:0!important;padding:0!important;border:0!important;min-height:0!important;height:auto!important}
+  .qrPanel>*:not(.printLabel){display:none!important}
+  .shell,.main,.content,.equipmentHero,.qrPanel,.printLabel,.printLabel *{visibility:visible!important}
+  .printLabel{position:static!important;width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;margin:0!important;padding:18px 0!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:10px!important}
+  .printLabel canvas{display:block!important;width:260px!important;height:260px!important;margin:0 auto!important}
+  .printLabel b{font-size:30px!important;line-height:1!important;margin:0!important}
+  @page{margin:.25in}
+}
