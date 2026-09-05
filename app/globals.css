@@ -97,3 +97,103 @@
 .correctionCheck{display:flex!important;align-items:center;gap:7px!important;font-weight:600!important;color:var(--muted)!important}.correctionCheck input{width:auto!important}
 .statusList{display:grid;gap:10px;margin-top:16px}.statusItem{display:flex;align-items:center;justify-content:space-between;gap:18px;border:1px solid var(--line);border-left:5px solid #16a34a;border-radius:10px;padding:14px 16px}.statusItem.warn{border-left-color:#d97706}.statusBadge{font-weight:800;white-space:nowrap}
 @media(max-width:800px){.serviceKpiRow{grid-template-columns:1fr}}
+
+/* v40 — Equipment Detail mobile layout */
+@media(max-width:650px){
+  .content{padding:12px}
+  .detailToolbar{gap:10px;margin-bottom:12px;align-items:stretch}
+  .detailToolbar .btn{flex:1;text-align:center;padding:10px 9px;font-size:14px}
+  .equipmentHero{padding:12px;border-radius:12px}
+  .equipmentHero img{height:150px;margin-bottom:10px;border-radius:10px}
+  .equipmentHero h2{font-size:24px;margin-bottom:2px}
+  .heroName{font-size:16px}
+  .metaLine{gap:6px;margin-top:9px;font-size:13px}
+  .metaLine span{padding:6px 8px;border-radius:7px}
+  .hoursMeta{display:flex!important;flex-wrap:wrap}
+  .quickHours form{position:fixed;left:12px;right:12px;top:50%;transform:translateY(-50%);width:auto;max-width:none;padding:16px}
+  .qrPanel{margin-top:12px;padding:12px 0 0;gap:4px}
+  .qrPanel .printLabel{width:132px}
+  .qrPanel .printLabel canvas{width:112px!important;height:112px!important}
+  .qrPanel .btn{padding:8px 11px;font-size:13px}
+  .qrPanel span{font-size:12px}.qrPanel small{font-size:10px}
+
+  .equipmentDetailMetrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important;margin-top:10px!important}
+  .equipmentDetailMetrics .metric{min-height:88px;padding:12px;border-radius:11px}
+  .equipmentDetailMetrics .metric small{font-size:10px;line-height:1.2}
+  .equipmentDetailMetrics .metric strong{font-size:23px;margin-top:6px;overflow-wrap:anywhere}
+
+  .cols{gap:10px;margin-top:10px}
+  .card{padding:13px;border-radius:12px}
+  .card h2{font-size:17px;margin-bottom:8px}
+  .toolbar{gap:8px;margin-bottom:10px;align-items:flex-start}
+  .toolbar .textLink{font-size:12px;white-space:nowrap;padding-top:2px}
+  .muted{font-size:12px;line-height:1.3}
+
+  /* Parts become readable cards instead of a squeezed table. */
+  .equipmentPartsCard .tablewrap{overflow:visible}
+  .equipmentPartsCard table,.equipmentPartsCard tbody{display:block;width:100%}
+  .equipmentPartsCard thead{display:none}
+  .equipmentPartsCard tr{display:grid;grid-template-columns:1fr auto;gap:5px 10px;padding:10px 0;border-bottom:1px solid var(--line)}
+  .equipmentPartsCard tr:last-child{border-bottom:0}
+  .equipmentPartsCard td{display:block;padding:0;border:0;font-size:13px;min-width:0}
+  .equipmentPartsCard td:nth-child(1){grid-column:1/-1;font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:800}
+  .equipmentPartsCard td:nth-child(2){grid-column:1;color:var(--red);font-size:14px}
+  .equipmentPartsCard td:nth-child(3){grid-column:1;font-size:13px;line-height:1.25}
+  .equipmentPartsCard td:nth-child(4){grid-column:2;grid-row:2/4;align-self:center;text-align:center;min-width:44px;font-size:16px}
+  .equipmentPartsCard td:nth-child(4)::before{content:'On Hand';display:block;font-size:9px;color:var(--muted);text-transform:uppercase;font-weight:800;margin-bottom:3px}
+  .equipmentPartsCard .emptyCell{display:block!important;padding:16px!important;text-align:center!important;grid-column:1/-1}
+
+  .equipmentServiceIntervals .serviceRow{padding:10px 0;gap:8px}
+  .equipmentServiceIntervals .serviceRow b{font-size:14px;line-height:1.25}
+  .equipmentServiceIntervals .serviceMeta{font-size:11px}
+  .equipmentServiceIntervals .serviceState{min-width:74px;font-size:11px}
+  .equipmentServiceIntervals .serviceState small{font-size:10px}
+
+  .serviceDocumentsCard{margin-top:10px!important}
+  .equipmentQuickService{margin:10px 0 12px}
+  .equipmentQuickService>summary{display:flex;width:100%;justify-content:center;text-align:center;font-size:13px;padding:10px}
+  .quickServiceBody{padding:10px;margin-top:8px}
+  .serviceDocumentGrid{gap:9px;margin-top:9px}
+  .serviceDocumentRecord{padding:10px}
+  .serviceDocumentHeader{gap:8px}
+  .serviceDocumentHeader b{font-size:14px}
+  .serviceDocumentHeader small{font-size:10px;line-height:1.3}
+  .serviceDocumentFile{padding:9px;gap:8px}
+  .serviceDocumentFile .attachmentActions{width:100%;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .serviceDocumentFile .attachmentActions .btn{font-size:12px;padding:7px 9px}
+  .attachmentUploadTrigger{font-size:12px;padding:8px 10px!important}
+
+  /* Service history rows become vertical cards; no horizontal scrolling. */
+  .serviceHistoryCard{margin-top:10px!important}
+  .serviceHistoryCard .tablewrap{overflow:visible}
+  .serviceHistoryCard table,.serviceHistoryCard tbody{display:block;width:100%}
+  .serviceHistoryCard thead{display:none}
+  .serviceHistoryCard tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 10px;padding:12px;margin:0 0 10px;border:1px solid var(--line);border-radius:10px;background:#fafafa}
+  .serviceHistoryCard tr:last-child{margin-bottom:0}
+  .serviceHistoryCard td{display:block;padding:0;border:0;font-size:13px;min-width:0;overflow-wrap:anywhere}
+  .serviceHistoryCard td::before{display:block;font-size:9px;line-height:1.15;text-transform:uppercase;letter-spacing:.02em;color:var(--muted);font-weight:800;margin-bottom:3px}
+  .serviceHistoryCard td:nth-child(1)::before{content:'Date'}
+  .serviceHistoryCard td:nth-child(2)::before{content:'Service'}
+  .serviceHistoryCard td:nth-child(3)::before{content:'Hours'}
+  .serviceHistoryCard td:nth-child(4)::before{content:'Parts Used'}
+  .serviceHistoryCard td:nth-child(5)::before{content:'Parts Cost'}
+  .serviceHistoryCard td:nth-child(6)::before{content:'Labor'}
+  .serviceHistoryCard td:nth-child(7)::before{content:'Outside'}
+  .serviceHistoryCard td:nth-child(8)::before{content:'Total'}
+  .serviceHistoryCard td:nth-child(9)::before{content:'Performed By'}
+  .serviceHistoryCard td:nth-child(10)::before{content:'Documents'}
+  .serviceHistoryCard td:nth-child(11)::before{content:'Notes'}
+  .serviceHistoryCard td:nth-child(10),.serviceHistoryCard td:nth-child(11),.serviceHistoryCard td:nth-child(12){grid-column:1/-1}
+  .serviceHistoryCard td:nth-child(8){font-size:15px;color:var(--ink)}
+  .serviceHistoryCard .attachmentList{min-width:0;width:100%}
+  .serviceHistoryCard .attachmentItem{padding:8px}
+  .serviceHistoryCard .attachmentItem small{font-size:10px;line-height:1.25}
+  .serviceHistoryCard td:last-child>.btn,.serviceHistoryCard td:last-child button{width:100%}
+  .serviceHistoryCard .emptyCell{display:block!important;grid-column:1/-1;padding:16px!important;text-align:center!important}
+}
+
+@media(max-width:390px){
+  .equipmentDetailMetrics{grid-template-columns:1fr 1fr!important}
+  .equipmentDetailMetrics .metric strong{font-size:20px}
+  .detailToolbar .btn{font-size:12px}
+}

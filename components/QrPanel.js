@@ -2,7 +2,7 @@
 
 import {useEffect,useRef,useState} from 'react';
 
-export default function QrPanel({equipmentId,partId,code,name}){
+export default function QrPanel({equipmentId,partId,code,name,baseUrl}){
   const ref=useRef(null);
   const [err,setErr]=useState('');
   const path=equipmentId?`/equipment/${equipmentId}`:`/parts/${partId}`;
@@ -10,10 +10,10 @@ export default function QrPanel({equipmentId,partId,code,name}){
   useEffect(()=>{
     let alive=true;
     import('qrcode')
-      .then(m=>m.toCanvas(ref.current,`${window.location.origin}${path}`,{width:220,margin:1}))
+      .then(m=>{const origin=String(baseUrl||window.location.origin).replace(/\/$/,'');return m.toCanvas(ref.current,`${origin}${path}`,{width:220,margin:1})})
       .catch(()=>alive&&setErr('QR library did not load.'));
     return()=>{alive=false};
-  },[path]);
+  },[path,baseUrl]);
 
   return <div className="qrPanel">
     <div className="printLabel">
