@@ -59,3 +59,22 @@
 .serviceEditBtn{white-space:nowrap}.serviceRecordForm select{border:1px solid #d0d5dd;border-radius:7px;padding:9px;background:#fff;width:100%}
 .sidebarSearch{margin:14px 0 8px}.sidebarSearch input{width:100%;box-sizing:border-box;background:#0e1114;border:1px solid #394047;color:white;border-radius:8px;padding:10px 11px;font-size:13px}.sidebarSearch input::placeholder{color:#9aa3ad}.globalSearchHero{display:flex;gap:10px;margin-bottom:16px}.globalSearchHero input{flex:1;font-size:18px;padding:14px 16px;border:1px solid #cfd5dc;border-radius:10px}.searchSummary{margin:0 0 14px;color:#596579}.searchPage{max-width:1180px}.searchGroup{margin-bottom:14px;padding:18px}.searchGroup h2{margin:0 0 10px}.searchResult{display:flex;flex-direction:column;gap:3px;padding:11px 4px;border-top:1px solid #e8ebef;text-decoration:none;color:inherit}.searchResult:first-of-type{border-top:0}.searchResult b{color:#bd251a}.searchResult span{font-size:13px;color:#687386}.attachmentManage{margin-top:5px}.attachmentManage>summary{cursor:pointer;color:#bd251a;font-weight:700;font-size:12px}.compactAttachmentForm{min-width:260px;margin-top:8px}.importDrop{padding:20px;border:2px dashed #c7ccd3;border-radius:12px;background:#fafbfc}.importStats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.importStat{padding:8px 12px;border-radius:999px;background:#eef1f4;font-weight:700}.importStat.good{background:#e7f6ec;color:#18743a}.importStat.warn{background:#fff2d9;color:#885b00}.importRows{max-height:430px;overflow:auto;border:1px solid #e0e4e8;border-radius:10px}.importRow{display:grid;grid-template-columns:1.3fr .5fr .5fr .4fr;gap:10px;padding:10px;border-top:1px solid #eceff2;align-items:center;font-size:13px}.importRow:first-child{border-top:0}.importRow.unmatched{background:#fff8f3}.importStatus.ok{color:#18743a}.importStatus.bad{color:#b42318}@media(max-width:800px){.globalSearchHero{flex-direction:column}.importRow{grid-template-columns:1fr}.sidebarSearch{display:block}}
 .attachmentActions{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap}.importHelp{margin-top:18px;padding-top:14px;border-top:1px solid #e6e9ed}.importRow small{display:block;margin-top:2px}
+
+/* v33 dashboard needed-service + QR alignment */
+.qrPanel{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;border-left:1px solid var(--line);padding-left:18px;min-width:0}
+.qrPanel .printLabel{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:160px;max-width:100%;text-align:center}
+.qrPanel .printLabel canvas{display:block;margin:0 auto;width:132px!important;height:132px!important}
+.qrPanel .printLabel b{display:block;width:100%;margin:0;text-align:center;line-height:1.15}
+.qrPanel span,.qrPanel small{display:block;text-align:center;max-width:190px}
+.dashboardServiceCard{border-top:4px solid var(--red)}
+.dashboardServiceHeader{align-items:flex-start}
+.dashboardServiceRow.overdue td{background:#fff8f7}
+.dashboardServiceRow.due_soon td{background:#fffcf5}
+.serviceDashboardBadge{display:inline-block;padding:6px 9px;border-radius:999px;font-size:12px;font-weight:900;text-transform:uppercase;white-space:nowrap}
+.serviceDashboardBadge.overdue{background:#fef3f2;color:var(--red);border:1px solid #fecdca}
+.serviceDashboardBadge.due_soon{background:#fffaeb;color:var(--amber);border:1px solid #fedf89}
+@media(max-width:1050px){.qrPanel{padding:16px 0 0;border-left:0;border-top:1px solid var(--line)}}
+@media print{
+  .qrPanel .printLabel canvas{width:280px!important;height:280px!important}
+  .qrPanel .printLabel{width:100%!important;max-width:none!important;gap:12px!important}
+}
